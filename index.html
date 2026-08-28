@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TV Nostálgica</title>
-
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
     <header>
         <h1>TV Nostálgica</h1>
-        <p> Embarque em uma viagem pelas relíquias que marcaram a televisão brasileira!</p>
+        <p>Embarque em uma viagem pelas relíquias que marcaram a televisão brasileira!</p>
     </header>
 
     <main>
@@ -37,18 +35,36 @@
                     <input type="password" id="codigo" name="codigo" placeholder="Digite o código" required>
                 </div>
 
-                <button type="submit">
+                <button type="submit" id="botaoContinuar">
                     Continuar
                 </button>
 
             </form>
+            <p id="mensagem"></p>
+
+        </section>
+
+        <section id="menu" class="oculto">
+            <header>
+                <h1>TV Nostálgica</h1>
+                <h2 id="boas-vindas"></h2>
+                <p>O que deseja fazer?</p>
+            </header>
+
+            <div class="opcoes">
+                <button id="botaoVotar">Votar</button>
+                <button id="botaoFoto">Fotos</button>
+                <button id="placar">Placar</button>
+            </div>
         </section>
 
     </main>
+
     <footer>
-        <p> TV Nostalgia 2026 — Feito pelo melhor programador do CEPI Parque dos Buritis </p>
+        <p>TV Nostálgica 2026 - feito pelo melhor programador do CEPI Parque dos Buritis</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
