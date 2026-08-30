@@ -12,15 +12,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const boasVindas = document.getElementById("boas-vindas");
 
-    const botaoVotar = document.getElementById("botaoVotar");
+    const botaoContinuar = document.getElementById("botaoContinuar");
     const botaoFoto = document.getElementById("botaoFoto");
+    const botaoVotar = document.getElementById("botaoVotar");
     const botaoPlacar = document.getElementById("placar");
 
     const codigoCorreto = "oi";
 
+    function pulsar(botao) {
+        botao.classList.add("pulsando");
+        setTimeout(() => botao.classList.remove("pulsando"), 500);
+    }
+
+    function criarRipple(evento, botao) {
+        const antigo = botao.querySelector(".ripple");
+        if (antigo) antigo.remove();
+
+        const raio = Math.max(botao.clientWidth, botao.clientHeight);
+        const rect = botao.getBoundingClientRect();
+
+        const ripple = document.createElement("span");
+        ripple.classList.add("ripple");
+        ripple.style.width = ripple.style.height = `${raio}px`;
+        ripple.style.left = `${evento.clientX - rect.left - raio / 2}px`;
+        ripple.style.top = `${evento.clientY - rect.top - raio / 2}px`;
+
+        botao.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+    }
+
     formulario.addEventListener("submit", (event) => {
 
         event.preventDefault();
+
+        pulsar(botaoContinuar);
 
         const nome = nomeInput.value.trim();
         const codigo = codigoInput.value.trim();
@@ -41,21 +66,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         boasVindas.textContent = `Bem-vindo, ${nome}!`;
 
-        login.style.display = "none";
+        login.classList.add("saindo");
 
-        menu.classList.remove("oculto");
+        setTimeout(() => {
+            login.style.display = "none";
+            menu.classList.remove("oculto");
+            menu.classList.add("entrando");
+        }, 400);
 
     });
 
-    botaoVotar.addEventListener("click", () => {
+    botaoContinuar.addEventListener("click", (event) => {
+        criarRipple(event, botaoContinuar);
+    });
+
+    botaoVotar.addEventListener("click", (event) => {
+        pulsar(botaoVotar);
+        criarRipple(event, botaoVotar);
         alert("Área de votação em construção!");
     });
 
-    botaoFoto.addEventListener("click", () => {
+    botaoFoto.addEventListener("click", (event) => {
+        pulsar(botaoFoto);
+        criarRipple(event, botaoFoto);
         alert("Área de fotos em construção!");
     });
 
-    botaoPlacar.addEventListener("click", () => {
+    botaoPlacar.addEventListener("click", (event) => {
+        pulsar(botaoPlacar);
+        criarRipple(event, botaoPlacar);
         alert("Placar em construção!");
     });
 
