@@ -17,6 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const botaoVotar = document.getElementById("botaoVotar");
     const botaoPlacar = document.getElementById("placar");
 
+    const botaoOlho = document.getElementById("toggleSenha");
+    const olhoAberto = botaoOlho.querySelector(".icone-olho-aberto");
+    const olhoFechado = botaoOlho.querySelector(".icone-olho-fechado");
+
     const codigoCorreto = "lilas";
 
     function pulsar(botao) {
@@ -39,6 +43,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         botao.appendChild(ripple);
         setTimeout(() => ripple.remove(), 600);
+    }
+
+    function alternarVisibilidadeSenha() {
+        const mostrando = codigoInput.type === "text";
+
+        codigoInput.type = mostrando ? "password" : "text";
+
+        olhoAberto.classList.toggle("oculto", !mostrando);
+        olhoFechado.classList.toggle("oculto", mostrando);
+
+        botaoOlho.setAttribute("aria-label", mostrando ? "Mostrar senha" : "Ocultar senha");
+
+        codigoInput.focus();
     }
 
     formulario.addEventListener("submit", (event) => {
@@ -78,6 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     botaoContinuar.addEventListener("click", (event) => {
         criarRipple(event, botaoContinuar);
+    });
+
+    botaoOlho.addEventListener("click", () => {
+        alternarVisibilidadeSenha();
     });
 
     botaoVotar.addEventListener("click", (event) => {
