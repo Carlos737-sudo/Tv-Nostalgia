@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const botaoVotar = document.getElementById("botaoVotar");
     const botaoPlacar = document.getElementById("placar");
 
-    const codigoCorreto = "oi";
+    const codigoCorreto = "lilas";
 
     function pulsar(botao) {
         botao.classList.add("pulsando");
